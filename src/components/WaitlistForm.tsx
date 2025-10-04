@@ -143,23 +143,11 @@ export function WaitlistForm({ isOpen, onClose }: WaitlistFormProps) {
                 />
               </div>
 
-              <div>
-                <Label htmlFor="name" className="text-sm font-medium text-white">
-                  Name (Optional)
-                </Label>
-                <Input
-                  id="name"
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => handleInputChange('name', e.target.value)}
-                  className="mt-1 bg-black border-white/20 text-white placeholder-white/60 focus:border-white"
-                  placeholder="Your name"
-                />
-              </div>
+      
 
               <div>
                 <Label htmlFor="personType" className="text-sm font-medium text-white">
-                  What type of person are you? (Optional)
+                  What describes you best? (Optional)
                 </Label>
                 <Select onValueChange={(value) => handleInputChange('personType', value)}>
                   <SelectTrigger className="mt-1 bg-black border-white/20 text-white">
@@ -177,26 +165,7 @@ export function WaitlistForm({ isOpen, onClose }: WaitlistFormProps) {
                 </Select>
               </div>
 
-              <div>
-                <Label htmlFor="desiredResults" className="text-sm font-medium text-white">
-                  Which best describes the results you're trying to achieve? (Optional)
-                </Label>
-                <Select onValueChange={(value) => handleInputChange('desiredResults', value)}>
-                  <SelectTrigger className="mt-1 bg-black border-white/20 text-white">
-                    <SelectValue placeholder="Select your goal" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-black border-white/20">
-                    <SelectItem value="increase-closing-rate" className="text-white hover:bg-white/10">Increase my closing rate</SelectItem>
-                    <SelectItem value="handle-objections" className="text-white hover:bg-white/10">Better handle objections</SelectItem>
-                    <SelectItem value="improve-cold-outreach" className="text-white hover:bg-white/10">Improve cold outreach success</SelectItem>
-                    <SelectItem value="build-confidence" className="text-white hover:bg-white/10">Build sales confidence</SelectItem>
-                    <SelectItem value="scale-sales-team" className="text-white hover:bg-white/10">Scale my sales team</SelectItem>
-                    <SelectItem value="shorten-sales-cycle" className="text-white hover:bg-white/10">Shorten my sales cycle</SelectItem>
-                    <SelectItem value="increase-revenue" className="text-white hover:bg-white/10">Increase overall revenue</SelectItem>
-                    <SelectItem value="other" className="text-white hover:bg-white/10">Other</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+             
 
               <div>
                 <Label htmlFor="biggestChallenge" className="text-sm font-medium text-white">
@@ -222,7 +191,7 @@ export function WaitlistForm({ isOpen, onClose }: WaitlistFormProps) {
 
               <div>
                 <Label htmlFor="whatElseTried" className="text-sm font-medium text-white">
-                  What else have you tried? (Optional)
+                  Can you share what you’ve already tried and what gaps or limitations you faced? (Optional)
                 </Label>
                 <Textarea
                   id="whatElseTried"
@@ -243,13 +212,13 @@ export function WaitlistForm({ isOpen, onClose }: WaitlistFormProps) {
                     <SelectValue placeholder="Select your budget range" />
                   </SelectTrigger>
                   <SelectContent className="bg-black border-white/20">
-                    <SelectItem value="under-50" className="text-white hover:bg-white/10">Under $50/month</SelectItem>
-                    <SelectItem value="50-100" className="text-white hover:bg-white/10">$50 - $100/month</SelectItem>
-                    <SelectItem value="100-200" className="text-white hover:bg-white/10">$100 - $200/month</SelectItem>
-                    <SelectItem value="200-500" className="text-white hover:bg-white/10">$200 - $500/month</SelectItem>
-                    <SelectItem value="500-1000" className="text-white hover:bg-white/10">$500 - $1,000/month</SelectItem>
-                    <SelectItem value="over-1000" className="text-white hover:bg-white/10">Over $1,000/month</SelectItem>
-                    <SelectItem value="enterprise" className="text-white hover:bg-white/10">Enterprise pricing</SelectItem>
+                    <SelectItem value="under-20" className="text-white hover:bg-white/10">Under $20/month</SelectItem>
+                    <SelectItem value="20-30" className="text-white hover:bg-white/10">$20 - $30/month</SelectItem>
+                    <SelectItem value="30-40" className="text-white hover:bg-white/10">$30 - $40/month</SelectItem>
+                    <SelectItem value="40-50" className="text-white hover:bg-white/10">$40 - $50/month</SelectItem>
+                    <SelectItem value="50-60" className="text-white hover:bg-white/10">$50 - $60/month</SelectItem>
+                    <SelectItem value="over-100" className="text-white hover:bg-white/10">Over $100/month</SelectItem>
+                    
                   </SelectContent>
                 </Select>
               </div>
