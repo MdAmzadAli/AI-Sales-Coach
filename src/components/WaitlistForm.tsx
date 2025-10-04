@@ -28,9 +28,21 @@ export function WaitlistForm({ isOpen, onClose }: WaitlistFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     if (!formData.email) {
       setError('Email is required')
+      return
+    }
+    if (!formData.personType) {
+      setError('Please select your role')
+      return
+    }
+    if (!formData.biggestChallenge) {
+      setError('Please select your biggest challenge')
+      return
+    }
+    if (!formData.budgetRange) {
+      setError('Please select your budget range')
       return
     }
 
@@ -64,7 +76,7 @@ export function WaitlistForm({ isOpen, onClose }: WaitlistFormProps) {
 
       setIsSubmitted(true)
       console.log('Waitlist signup successful:', data)
-      
+
     } catch (err) {
       console.error('Waitlist signup error:', err)
       setError(err instanceof Error ? err.message : 'Failed to submit. Please try again.')
@@ -140,13 +152,13 @@ export function WaitlistForm({ isOpen, onClose }: WaitlistFormProps) {
                 />
               </div>
 
-      
+
 
               <div>
                 <Label htmlFor="personType" className="text-sm font-medium text-white">
-                  What describes you best? (Optional)
+                  What describes you best? *
                 </Label>
-                <Select onValueChange={(value) => handleInputChange('personType', value)}>
+                <Select onValueChange={(value) => handleInputChange('personType', value)} required>
                   <SelectTrigger className="mt-1 bg-black border-white/20 text-white">
                     <SelectValue placeholder="Select your role" />
                   </SelectTrigger>
@@ -162,13 +174,13 @@ export function WaitlistForm({ isOpen, onClose }: WaitlistFormProps) {
                 </Select>
               </div>
 
-             
+
 
               <div>
                 <Label htmlFor="biggestChallenge" className="text-sm font-medium text-white">
-                  Which best describes the biggest challenge you've experienced? (Optional)
+                  Which best describes the biggest challenge you've experienced? *
                 </Label>
-                <Select onValueChange={(value) => handleInputChange('biggestChallenge', value)}>
+                <Select onValueChange={(value) => handleInputChange('biggestChallenge', value)} required>
                   <SelectTrigger className="mt-1 bg-black border-white/20 text-white">
                     <SelectValue placeholder="Select your main challenge" />
                   </SelectTrigger>
@@ -188,7 +200,7 @@ export function WaitlistForm({ isOpen, onClose }: WaitlistFormProps) {
 
               <div>
                 <Label htmlFor="whatElseTried" className="text-sm font-medium text-white">
-                  Can you share what you’ve already tried and what gaps or limitations you faced? (Optional)
+                  Can you share what you've already tried and what gaps or limitations you faced? (Optional)
                 </Label>
                 <Textarea
                   id="whatElseTried"
@@ -202,9 +214,9 @@ export function WaitlistForm({ isOpen, onClose }: WaitlistFormProps) {
 
               <div>
                 <Label htmlFor="budgetRange" className="text-sm font-medium text-white">
-                  Which price point best describes your current budget? (Optional)
+                  Which price point best describes your current budget? *
                 </Label>
-                <Select onValueChange={(value) => handleInputChange('budgetRange', value)}>
+                <Select onValueChange={(value) => handleInputChange('budgetRange', value)} required>
                   <SelectTrigger className="mt-1 bg-black border-white/20 text-white">
                     <SelectValue placeholder="Select your budget range" />
                   </SelectTrigger>
@@ -215,7 +227,7 @@ export function WaitlistForm({ isOpen, onClose }: WaitlistFormProps) {
                     <SelectItem value="40-50" className="text-white hover:bg-white/10">$40 - $50/month</SelectItem>
                     <SelectItem value="50-60" className="text-white hover:bg-white/10">$50 - $60/month</SelectItem>
                     <SelectItem value="over-100" className="text-white hover:bg-white/10">Over $100/month</SelectItem>
-                    
+
                   </SelectContent>
                 </Select>
               </div>
