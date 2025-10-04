@@ -4,3 +4,14 @@ expertMode = true
 
 [nix]
 channel = "stable-25_05"
+
+[workflows]
+
+[[workflows.workflow]]
+name = "Frontend"
+mode = "sequential"
+author = 48303505
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm run dev"
