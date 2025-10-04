@@ -4,7 +4,7 @@ import { Input } from './ui/input'
 import { Label } from './ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select'
 import { Textarea } from './ui/textarea'
-import { projectId, publicAnonKey } from '../utils/supabase/info'
+import { supabase } from '../utils/supabase/client'
 
 interface WaitlistFormProps {
   isOpen: boolean
@@ -38,18 +38,11 @@ export function WaitlistForm({ isOpen, onClose }: WaitlistFormProps) {
     setError('')
 
     try {
-      // Direct Supabase REST API call to insert into waitlist table
-      const response = await fetch(
-        `https://${projectId}.supabase.co/rest/v1/waitlist`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'apikey': publicAnonKey,
-            'Authorization': `Bearer ${publicAnonKey}`,
-            'Prefer': 'return=representation'
-          },
-          body: JSON.stringify({
+      // Use Supabase client to insert into waitlist table
+      const { data, error } = await supabase
+        .from('waitlist')
+        .insert([
+          {
             email: formData.email.trim().toLowerCase(),
             name: formData.name.trim() || null,
             biggest_struggle: formData.problem || null,
@@ -60,24 +53,20 @@ export function WaitlistForm({ isOpen, onClose }: WaitlistFormProps) {
             budget_range: formData.budgetRange || null,
             signup_source: 'landing_page',
             created_at: new Date().toISOString()
-          })
-        }
-      )
+          }
+        ])
+        .select()
 
-      if (!response.ok) {
-        const errorData = await response.json()
-        
+      if (error) {
         // Handle duplicate email error
-        if (errorData.code === '23505') {
+        if (error.code === '23505') {
           throw new Error('This email is already on our waitlist!')
         }
-        
-        throw new Error(errorData.message || 'Failed to join waitlist. Please try again.')
+        throw new Error(error.message || 'Failed to join waitlist. Please try again.')
       }
 
-      const result = await response.json()
       setIsSubmitted(true)
-      console.log('Waitlist signup successful:', result)
+      console.log('Waitlist signup successful:', data)
       
     } catch (err) {
       console.error('Waitlist signup error:', err)
