@@ -55,6 +55,7 @@ import { defineConfig } from 'vite';
       outDir: 'build',
     },
     server: {
-      allowedHosts: ['*']
+      host: '0.0.0.0',
+      allowedHosts: ['.replit.dev']
     }
   });
