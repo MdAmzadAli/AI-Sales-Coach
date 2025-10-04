@@ -15,3 +15,8 @@ author = 48303505
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "npm run dev"
+
+[[ports]]
+localPort = 3000
+externalPort = 3000
+exposeLocalhost = true
