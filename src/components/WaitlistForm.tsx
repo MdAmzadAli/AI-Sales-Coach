@@ -44,10 +44,7 @@ export function WaitlistForm({ isOpen, onClose }: WaitlistFormProps) {
         .insert([
           {
             email: formData.email.trim().toLowerCase(),
-            name: formData.name.trim() || null,
-            biggest_struggle: formData.problem || null,
             person_type: formData.personType || null,
-            desired_results: formData.desiredResults || null,
             biggest_challenge: formData.biggestChallenge || null,
             what_else_tried: formData.whatElseTried || null,
             budget_range: formData.budgetRange || null,
